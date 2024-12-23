@@ -67,7 +67,8 @@ Both websites provide a download option for all listings. Once downloaded, place
 Install missing packages with:
 
 ```bash
-pip install pandas openpyxl"
+pip install pandas openpyxl
+"
 
 ---
 
