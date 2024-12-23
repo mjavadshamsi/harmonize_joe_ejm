@@ -8,6 +8,8 @@ This repository contains a Python script that merges and harmonizes data from tw
 
 Both websites provide a download option for all listings. Once downloaded, place them in the correct folders (`joe_listings` for JOE, `ejm_listings` for EJM), ensure the filenames follow the expected naming pattern, and run the script. It reads the latest files, merges and harmonizes their structure, and appends them to (or creates) an Excel file called `Application_MasterFile.xlsx`.
 
+The key feature of this script is that it does not overwrite the entire Excel file when you run it. Instead, it appends only new rows to the end of the existing sheets, preserving any customizations you’ve made. For example, if you’ve added notes, formatting, or new columns, these changes will remain intact, and, only listings that are new (not already present in the file) will be added.
+
 > **Disclaimer**: This script is provided “as-is” for personal use. It is not guaranteed to be error-free or fit for any specific purpose. Feel free to adjust and modify as you see fit.
 
 ---
@@ -45,8 +47,10 @@ Both websites provide a download option for all listings. Once downloaded, place
 2. **Place** them into their corresponding folders, renaming them as follows:
    - JOE: `joe_listings/joe_resultset_dd_mm_yyyy.xlsx` (or `.xls`)
    - EJM: `ejm_listings/positions_dd_mm_yyyy.csv`
-3. **Run** the Python script.  
-4. The script:
+3. **Run** the Python script.
+4. Make all changes you would like, e.g., remove unwanted rows.
+5. After making all the changes you want, re-run the script before adding a new batch of data.
+6. The script:
    - Finds the **most recent** listing file by date (based on the filename).
    - Reads and **harmonizes** the columns (removing or renaming certain ones).
    - Appends new rows to either the `Listings` or `Deleted` sheet of `Application_MasterFile.xlsx`.
