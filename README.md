@@ -102,19 +102,6 @@ python combine_listings.py
 
 ## 5. Detailed Script Logic
 
-### Environment Setup
-
-```python
-if os.environ.get('USER') == 'javad':
-    os.chdir('/Users/javad/Dropbox/JM')
-elif os.environ.get('USERNAME') == 'javad_s':
-    os.chdir('C:/Non-Roaming/javad_s/Dropbox/JM')
-else:
-    print("working directory was not changed.")
-```
-
-- The script attempts to set the working directory based on environment variables.
-- If neither variable matches, it leaves the working directory unchanged.
 
 ### Reading & Harmonizing JOE Listings
 
