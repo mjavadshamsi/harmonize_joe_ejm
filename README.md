@@ -68,7 +68,7 @@ Install missing packages with:
 
 ```bash
 pip install pandas openpyxl
-"
+```
 
 ---
 
@@ -86,7 +86,7 @@ pip install pandas openpyxl
 
 ```python
 python combine_listings.py
-"
+```
 
 6. After the first run, you will see an **`Application_MasterFile.xlsx`** with two sheets:
    - **Listings** – All accepted listings so far.
@@ -107,7 +107,7 @@ elif os.environ.get('USERNAME') == 'javad_s':
     os.chdir('C:/Non-Roaming/javad_s/Dropbox/JM')
 else:
     print("working directory was not changed.")
-"
+```
 
 - The script attempts to set the working directory based on environment variables.
 - If neither variable matches, it leaves the working directory unchanged.
@@ -122,7 +122,7 @@ else:
 ```python
 df_new.columns = [col if col == 'jp_id' else col.replace('jp_', '') for col in df_new.columns]
 df_new = df_new.rename(columns={'Application_deadline': 'deadline'})
-"
+```
 
 5. The `deadline` column is converted to a `datetime.date`.  
 6. A **JOE URL** column (`joe_url`) is created for easy navigation:
@@ -131,7 +131,7 @@ df_new = df_new.rename(columns={'Application_deadline': 'deadline'})
 df_new['joe_url'] = df_new['jp_id'].apply(
     lambda jp_id: f'https://www.aeaweb.org/joe/listing.php?JOE_ID={jp_id}'
 )
-"
+```
 
 7. A helper function **`reorder_and_fill_columns`** ensures the final DataFrame has a fixed column order and fills missing columns with `None`.
 
@@ -156,7 +156,7 @@ def append_df_to_ws(ws, df):
     rows = dataframe_to_rows(df, index=False, header=False)
     for row in rows:
         ws.append(row)
-"
+```
 
 8. The workbook is then **saved**.
 
@@ -205,7 +205,7 @@ excluded_countries = [
     'turkey', 'south africa', 'bangladesh', 'lebanon', 'uzbekistan', 'russia', 
     'korea', 'saudi'
 ]
-"
+```
 
 - You can **comment out** or remove the environment checks for the working directory if they don’t apply to your local setup.
 - If you **want to change** the default column order or remove any columns, you can adapt the `master_columns` list and the relevant rename steps in the script:
@@ -215,7 +215,7 @@ master_columns = [
     'institution', 'division', 'department', 'keywords', 'title', 'deadline', 
     'country', 'jp_id', 'ejm_id', 'joe_url', 'ejm_url', 'BatchDate', 'Source'
 ]
-"
+```
 
 - If your data files have a **different naming structure**, you’ll need to adjust the **regular expressions** and filename matching logic.
 
