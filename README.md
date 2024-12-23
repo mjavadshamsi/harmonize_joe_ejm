@@ -8,7 +8,7 @@ This repository contains a Python script that merges and harmonizes data from tw
 
 Both websites provide a download option for all listings. Once downloaded, place them in the correct folders (`joe_listings` for JOE, `ejm_listings` for EJM), ensure the filenames follow the expected naming pattern, and run the script. It reads the latest files, merges and harmonizes their structure, and appends them to (or creates) an Excel file called `Application_MasterFile.xlsx`.
 
-> **Disclaimer**: This script is for personal/academic use. No claim is made that it is error-free or perfectly suited for all use cases.
+> **Disclaimer**: This script is provided “as-is” for personal use. It is not guaranteed to be error-free or fit for any specific purpose. Feel free to adjust and modify as you see fit.
 
 ---
 
@@ -56,7 +56,15 @@ Both websites provide a download option for all listings. Once downloaded, place
 
 ## Required Setup
 
-- **Python 3.7+** (recommended)
-- Install the following libraries if missing:
-  ```bash
-  pip install pandas openpyxl
+- **Python**: Python 3.7+ recommended.
+- **Python packages used**:
+  - `pandas`
+  - `openpyxl`
+  - `datetime` (standard library)
+  - `re` (standard library)
+  - `os` (standard library)
+
+Install missing packages with:
+
+```bash
+pip install pandas openpyxl
