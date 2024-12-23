@@ -66,7 +66,7 @@ Both websites provide a download option for all listings. Once downloaded, place
 
 Install missing packages with:
 
-```python
+```bash
 pip install pandas openpyxl
 "
 
@@ -84,7 +84,7 @@ pip install pandas openpyxl
    - `positions_dd_mm_yyyy` for EJM (e.g. `positions_23_12_2024.csv`)
 5. **Run** the script:
 
-```
+```python
 python combine_listings.py
 "
 
@@ -100,7 +100,7 @@ python combine_listings.py
 
 ### Environment Setup
 
-```
+```python
 if os.environ.get('USER') == 'javad':
     os.chdir('/Users/javad/Dropbox/JM')
 elif os.environ.get('USERNAME') == 'javad_s':
@@ -119,7 +119,7 @@ else:
 3. Certain columns are **removed** (e.g. `'joe_issue_ID', 'jp_section', 'jp_full_text', ...`).  
 4. Columns are **renamed** for consistency:
 
-```
+```python
 df_new.columns = [col if col == 'jp_id' else col.replace('jp_', '') for col in df_new.columns]
 df_new = df_new.rename(columns={'Application_deadline': 'deadline'})
 "
@@ -127,7 +127,7 @@ df_new = df_new.rename(columns={'Application_deadline': 'deadline'})
 5. The `deadline` column is converted to a `datetime.date`.  
 6. A **JOE URL** column (`joe_url`) is created for easy navigation:
 
-```
+```python
 df_new['joe_url'] = df_new['jp_id'].apply(
     lambda jp_id: f'https://www.aeaweb.org/joe/listing.php?JOE_ID={jp_id}'
 )
@@ -149,7 +149,7 @@ df_new['joe_url'] = df_new['jp_id'].apply(
    Those get appended to **Deleted**. Otherwise, they go to **Listings**.
 7. Finally, it **appends** new rows to the workbook **without overwriting** existing rows, by using `openpyxl` and a helper function like:
 
-```
+```python
 def append_df_to_ws(ws, df):
     if df.empty:
         return
@@ -198,7 +198,7 @@ def append_df_to_ws(ws, df):
 
 - The list `excluded_countries` can be **modified** to your preference:
 
-```
+```python
 excluded_countries = [
     'china', 'taiwan', 'philippines', 'hong', 'malawi', 'colombia', 'japan', 
     'brazil', 'chile', 'india', 'israel', 'argentina', 'mexico', 'saudi arabia', 
@@ -210,7 +210,7 @@ excluded_countries = [
 - You can **comment out** or remove the environment checks for the working directory if they don’t apply to your local setup.
 - If you **want to change** the default column order or remove any columns, you can adapt the `master_columns` list and the relevant rename steps in the script:
 
-```
+```python
 master_columns = [
     'institution', 'division', 'department', 'keywords', 'title', 'deadline', 
     'country', 'jp_id', 'ejm_id', 'joe_url', 'ejm_url', 'BatchDate', 'Source'
