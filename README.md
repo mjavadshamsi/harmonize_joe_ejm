@@ -83,9 +83,9 @@ pip install pandas openpyxl"
    - `positions_dd_mm_yyyy` for EJM (e.g. `positions_23_12_2024.csv`)
 5. **Run** the script:
 
-PYTHON
+```
 python combine_listings.py
-PYTHON
+"
 
 6. After the first run, you will see an **`Application_MasterFile.xlsx`** with two sheets:
    - **Listings** – All accepted listings so far.
@@ -99,14 +99,14 @@ PYTHON
 
 ### Environment Setup
 
-PYTHON
+```
 if os.environ.get('USER') == 'javad':
     os.chdir('/Users/javad/Dropbox/JM')
 elif os.environ.get('USERNAME') == 'javad_s':
     os.chdir('C:/Non-Roaming/javad_s/Dropbox/JM')
 else:
     print("working directory was not changed.")
-PYTHON
+"
 
 - The script attempts to set the working directory based on environment variables.
 - If neither variable matches, it leaves the working directory unchanged.
@@ -118,19 +118,19 @@ PYTHON
 3. Certain columns are **removed** (e.g. `'joe_issue_ID', 'jp_section', 'jp_full_text', ...`).  
 4. Columns are **renamed** for consistency:
 
-PYTHON
+```
 df_new.columns = [col if col == 'jp_id' else col.replace('jp_', '') for col in df_new.columns]
 df_new = df_new.rename(columns={'Application_deadline': 'deadline'})
-PYTHON
+"
 
 5. The `deadline` column is converted to a `datetime.date`.  
 6. A **JOE URL** column (`joe_url`) is created for easy navigation:
 
-PYTHON
+```
 df_new['joe_url'] = df_new['jp_id'].apply(
     lambda jp_id: f'https://www.aeaweb.org/joe/listing.php?JOE_ID={jp_id}'
 )
-PYTHON
+"
 
 7. A helper function **`reorder_and_fill_columns`** ensures the final DataFrame has a fixed column order and fills missing columns with `None`.
 
@@ -148,14 +148,14 @@ PYTHON
    Those get appended to **Deleted**. Otherwise, they go to **Listings**.
 7. Finally, it **appends** new rows to the workbook **without overwriting** existing rows, by using `openpyxl` and a helper function like:
 
-PYTHON
+```
 def append_df_to_ws(ws, df):
     if df.empty:
         return
     rows = dataframe_to_rows(df, index=False, header=False)
     for row in rows:
         ws.append(row)
-PYTHON
+"
 
 8. The workbook is then **saved**.
 
@@ -197,24 +197,24 @@ PYTHON
 
 - The list `excluded_countries` can be **modified** to your preference:
 
-PYTHON
+```
 excluded_countries = [
     'china', 'taiwan', 'philippines', 'hong', 'malawi', 'colombia', 'japan', 
     'brazil', 'chile', 'india', 'israel', 'argentina', 'mexico', 'saudi arabia', 
     'turkey', 'south africa', 'bangladesh', 'lebanon', 'uzbekistan', 'russia', 
     'korea', 'saudi'
 ]
-PYTHON
+"
 
 - You can **comment out** or remove the environment checks for the working directory if they don’t apply to your local setup.
 - If you **want to change** the default column order or remove any columns, you can adapt the `master_columns` list and the relevant rename steps in the script:
 
-PYTHON
+```
 master_columns = [
     'institution', 'division', 'department', 'keywords', 'title', 'deadline', 
     'country', 'jp_id', 'ejm_id', 'joe_url', 'ejm_url', 'BatchDate', 'Source'
 ]
-PYTHON
+"
 
 - If your data files have a **different naming structure**, you’ll need to adjust the **regular expressions** and filename matching logic.
 
