@@ -66,13 +66,13 @@ Both websites provide a download option for all listings. Once downloaded, place
 
 Install missing packages with:
 
-```bash
+```python
 pip install pandas openpyxl
 "
 
 ---
 
-## 4. Usage Instructions
+## Usage Instructions
 
 1. **Clone or Download** this repository.
 2. **Install** any missing Python libraries (`pandas`, `openpyxl`) in your environment.
